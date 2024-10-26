@@ -1,10 +1,9 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import  FastAPI, UploadFile, File, HTTPException
 from pydantic import BaseModel, EmailStr
 from motor.motor_asyncio import AsyncIOMotorClient
 from bson.objectid import ObjectId
 import os
 import uuid
-
 # FastAPI instance
 app = FastAPI()
 
@@ -25,7 +24,7 @@ class UserRegister(BaseModel):
 
 # Endpoint to scan food using AI
 @app.post("/scan-food/")
-async def scan_food(file: UploadFile = File(...)):
+async def scan_food(file: UploadFile=File(...) ):
     # Save the uploaded file temporarily
     temp_filename = f"temp_{uuid.uuid4()}.jpg"
     with open(temp_filename, "wb") as f:
